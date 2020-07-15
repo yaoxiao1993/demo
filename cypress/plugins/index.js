@@ -15,7 +15,20 @@
 /**
  * @type {Cypress.PluginConfig}
  */
+const fs = require('fs-extra');
+const path = require('path');
+function getConfigByFile(file){
+    const pathToConfigFile = path.resolve('..', 'demo/cypress/config', `cypress.${file}.json`);
+    return fs.readJson(pathToConfigFile);
+}
+
+const selectTestWithGrep = require('cypress-select-tests');
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
+    on('file:preprocessor', 'selectTestWithGrep(config)'); //通过标签挑选测试用例
+
+    // const file = config.env.configFile || 'dev'; //指定一个环境配置，如果没有指定，则使用cypress.dev.json
+    // return getConfigByFile(file);
+};

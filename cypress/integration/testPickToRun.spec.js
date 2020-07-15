@@ -1,4 +1,4 @@
-describe('My First Test', () => {
+describe('动态挑选测试用例', () => {
     it('Gets, types and asserts', () => {
         cy.visit('https://example.cypress.io');
 
@@ -11,5 +11,11 @@ describe('My First Test', () => {
         cy.get('.action-email')
             .type('fake@email.com')
             .should('have.value', 'fake@email.com')
-    })
+    });
+
+    it('测试动态挑选用例', ()=>{
+        cy.log('动态挑选用例');
+    });
+
+    it('使用标签动态挑选测试用例')
 });
